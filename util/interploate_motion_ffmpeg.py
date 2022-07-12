@@ -1,26 +1,22 @@
 import glob
 import os
-import os
-from re import S
-import shutil
 import numpy as np
-from PIL import Image
 import glob
-from tqdm import tqdm
 import random
 
 def command(dir,gap,save_dir):
     cmd1 = "ffmpeg -threads 16  -r 1 -pattern_type glob -i '" + dir+"/*.jpg'"+ " results/tmp_pr.mp4 -y" 
-    cmd2 = 'ffmpeg -threads 16 -i results/tmp_pr.mp4 -filter_complex "minterpolate='+'fps='+str(gap)+'" results/interpolate_out_pr.mp4 -y'
+    cmd2 = 'ffmpeg -threads 16 -i results/tmp_pr.mp4 -filter_complex "minterpolate='+'fps='+str(gap)+':mi_mode=mci:mc_mode=obmc:me:epzs" results/interpolate_out_pr.mp4 -y'
+
     cmd2_2 = 'ffmpeg -threads 16 -r 1 -i results/interpolate_out_pr.mp4 results/interpolate_out_r_1_pr.mp4 -y'
     cmd3 = 'ffmpeg -threads 16 -i results/interpolate_out_r_1_pr.mp4 -r 1 '+save_dir+'/fake_B_%5d.jpg -y'
 
-    
-    #pdb.set_trace()
     os.system(cmd1)
     os.system(cmd2)
     os.system(cmd2_2)
     os.system(cmd3)
+    os.system('rm -f results/*.mp4')
+    
 
 paths = ['']# the gap results dir
 motion_dir_root = '' #the target results dir
