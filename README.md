@@ -35,22 +35,32 @@
 
 ## Getting Started
 
-### Inference
-#### Download examples
+### Inference Enviroment
+We recommend using the virtual environment (conda) to run the code easily.
+
+```
+conda create -n fvid python=3.7;
+conda activate fvid;
+conda install pytorch==1.7.1 torchvision==0.8.2 cudatoolkit=10.1;
+conda install ffmpeg==4.0.2;
+pip install opencv-python dominate scipy tqdm matplotlib scikit-image;
+```
+
+### Download examples
 - Please first download the example ``datasets`` from [this link](https://drive.google.com/file/d/18LzfxnD0xUr4Bu-NrzrjzOoN0jUodgOW/view?usp=sharing).
 
 
-#### Download pretrained models 
+### Download pretrained models 
 - Face 
   - Download the pretrained model from [this link](https://drive.google.com/file/d/1rqZfQ5X1zVLvObqzJZFCG5tFMPGGHu9u/view?usp=sharing) and unzip it in ``checkpoints`` folder.
-  - To test the model 
+  - To test the model. 
     ```
     bash scripts/face/test.sh
     ```
 
 - Cityscapes  
   -  Download the pretrained model from [this link](https://drive.google.com/file/d/1AOAen8rcRhcJHX7QjyWAItCN243mHpxA/view?usp=sharing) and unzip it in ``checkpoints`` folder.
-  - To test the model 
+  - To test the model. 
     ```
     bash scripts/street/test.sh
     ```
@@ -59,7 +69,7 @@
 
 ### Installation
 
-Please first install the related packages through the installation in [Vid2Vid](https://github.com/NVIDIA/vid2vid).
+Please first install [FlowNet2](https://github.com/NVIDIA/flownet2-pytorch) into ``models/flownet2_pytorch/``.
 
 
 ### Dataset
