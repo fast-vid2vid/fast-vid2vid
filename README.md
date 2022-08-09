@@ -83,7 +83,7 @@ Please first install [FlowNet2](https://github.com/NVIDIA/flownet2-pytorch) into
 
 ### Training with Face Dataset
 
-- Pre-Train the teacher model.
+- Pre-train the teacher model.
   ```
   bash scripts/train_teacher.sh
   ```
@@ -100,7 +100,7 @@ Please first install [FlowNet2](https://github.com/NVIDIA/flownet2-pytorch) into
 
 ### Training with Cityscapes Dataset
 
-- Pre-Train the teacher model.
+- Pre-train the teacher model.
   ```
   bash scripts/train_teacher.sh
   ```
@@ -115,7 +115,7 @@ Please first install [FlowNet2](https://github.com/NVIDIA/flownet2-pytorch) into
   bash scripts/train_tkd.sh
   ```
 
-- Note that the resolution of our training data is 256 × 512, as we only use the first-scale generator. If needed, one can use original vid2vid's coarse-to-fine manner for higher resolution. For example, first one need to train a 1024× (or higher resolution) teacher model. Then, the network structures of the refined network are needed to be converted to a spatially low-demand network (refer to `netorks.py`). Next, train the network with spatial-temporal knowledge ditillation.
+- Note that the resolution of our training data is 256 × 512, as we only use the first-scale generator. If needed, one can use the original vid2vid's coarse-to-fine manner for higher resolution. For example, firstly, one needs to train a 1024× (or higher resolution) teacher model. Then, the network structures of the refined network are needed to be converted to a spatially low-demand network (refer to `netorks.py`). Next, train the network with spatial-temporal knowledge distillation.
   - (Optional) The knowledge distillation may be used from the first-scale network.
 
 
