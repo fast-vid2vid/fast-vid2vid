@@ -85,34 +85,34 @@ Please first install [FlowNet2](https://github.com/NVIDIA/flownet2-pytorch) into
 
 - Pre-train the teacher model.
   ```
-  bash scripts/train_teacher.sh
+  bash scripts/face/train_teacher.sh
   ```
 - Train the spatially low-demand generator with spatial knowledge distillation.
   ```
-  bash scripts/train_skd.sh
+  bash scripts/face/train_skd.sh
   ```
 
 - Train the part-time student generator with temporal knowledge distillation.
 
   ```
-  bash scripts/train_tkd.sh
+  bash scripts/face/train_tkd.sh
   ```
 
 ### Training with Cityscapes Dataset
 
 - Pre-train the teacher model.
   ```
-  bash scripts/train_teacher.sh
+  bash scripts/street/train_teacher.sh
   ```
 - Train the spatially low-demand generator with spatial knowledge distillation.
   ```
-  bash scripts/train_skd.sh
+  bash scripts/street/train_skd.sh
   ```
 
 - Train the part-time student generator with temporal knowledge distillation.
 
   ```
-  bash scripts/train_tkd.sh
+  bash scripts/street/train_tkd.sh
   ```
 
 - Note that the resolution of our training data is 256 × 512, as we only use the first-scale generator. If needed, one can use the original vid2vid's coarse-to-fine manner for higher resolution. For example, firstly, one needs to train a 1024× (or higher resolution) teacher model. Then, the network structures of the refined network are needed to be converted to a spatially low-demand network (refer to `netorks.py`). Next, train the network with spatial-temporal knowledge distillation.
