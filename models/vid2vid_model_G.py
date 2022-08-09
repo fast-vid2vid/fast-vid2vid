@@ -62,8 +62,7 @@ class Vid2VidModelG(BaseModel):
                                     opt.n_downsample_G, opt.norm, 0, self.gpu_ids, opt)
 
             if not pth_path is 'None':
-                self.netG0 = torch.load(pth_path)
-                self.netG0 = self.netG0.cuda() 
+                self.load_network(getattr(self, 'netG0'), 'G0', opt.which_epoch, opt.prune_pth) 
 
             print ('load pruned success',pth_path)
         elif not self.isTrain or opt.continue_train or opt.load_pretrain or is_teacher:  
