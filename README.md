@@ -47,7 +47,7 @@ pip install opencv-python dominate scipy tqdm matplotlib scikit-image;
 ```
 
 ### Download examples
-- Please first download the example ``datasets`` from [this link](https://drive.google.com/file/d/18LzfxnD0xUr4Bu-NrzrjzOoN0jUodgOW/view?usp=sharing).
+- Please first download the example ``datasets`` from [this link](https://drive.google.com/file/d/1Jl_R87bfzPjDkWa-5_duhssppIRw1x2C/view?usp=sharing).
 
 
 ### Download pretrained models 
@@ -59,7 +59,7 @@ pip install opencv-python dominate scipy tqdm matplotlib scikit-image;
     ```
 
 - Cityscapes  
-  -  Download the pretrained model from [this link](https://drive.google.com/file/d/1AOAen8rcRhcJHX7QjyWAItCN243mHpxA/view?usp=sharing) and unzip it in ``checkpoints`` folder.
+  -  Download the pretrained model from [this link](https://drive.google.com/file/d/1GE0tmHR6jmXl0YEaY_rD9TkRCAVafHio/view?usp=sharing) and unzip it in ``checkpoints`` folder.
   - To test the model. 
     ```
     bash scripts/street/test.sh
@@ -81,15 +81,43 @@ Please first install [FlowNet2](https://github.com/NVIDIA/flownet2-pytorch) into
 - Pose
   - We use dancing videos on YouTube following vid2vid. We then apply DensePose and OpenPose to estimate the poses for each frame. Due to the pravicy issues, we do not release the pretrained model for Pose2Body, which is kept the same as vid2vid.
 
+### Training with Face Dataset
 
+- Pre-Train the teacher model.
+  ```
+  bash scripts/train_teacher.sh
+  ```
+- Train the spatially low-demand generator with spatial knowledge distillation.
+  ```
+  bash scripts/train_skd.sh
+  ```
 
-## To-Do
-- [x] Inference Code
-- [x] Example datasets
-- [x] Example Pretrained Models 
-- [ ] Update Pretrained Models
-- [ ] Clean Training Code
-- [ ] Training Instructions
+- Train the part-time student generator with temporal knowledge distillation.
+
+  ```
+  bash scripts/train_tkd.sh
+  ```
+
+### Training with Cityscapes Dataset
+
+- Pre-Train the teacher model.
+  ```
+  bash scripts/train_teacher.sh
+  ```
+- Train the spatially low-demand generator with spatial knowledge distillation.
+  ```
+  bash scripts/train_skd.sh
+  ```
+
+- Train the part-time student generator with temporal knowledge distillation.
+
+  ```
+  bash scripts/train_tkd.sh
+  ```
+
+- Note that the resolution of our training data is 256 × 512, as we only use the first-scale generator. If needed, one can use original vid2vid's coarse-to-fine manner for higher resolution. For example, first one need to train a 1024× (or higher resolution) teacher model. Then, the network structures of the refined network are needed to be converted to a spatially low-demand network (refer to `netorks.py`). Next, train the network with spatial-temporal knowledge ditillation.
+  - (Optional) The knowledge distillation may be used from the first-scale network.
+
 
 
 
