@@ -55,9 +55,7 @@ if __name__ == '__main__':
         B = Variable(data['B']).view(1, -1, opt.output_nc, height, width) if len(data['B'].size()) > 2 else None
         inst = Variable(data['inst']).view(1, -1, 1, height, width) if len(data['inst'].size()) > 2 else None
         
-        
-        differ = B[0,-1]-B[0,-2]
-        differ = differ.abs().mean(0).unsqueeze(0)
+
 
 
         
